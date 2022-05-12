@@ -4,12 +4,7 @@ body {
   font-family: 'Recursive', sans-serif;
 }
 
-.container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+body {
   background-color: #FB6B6B;
 }
 
@@ -20,6 +15,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.start-container,
+.container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .logo {
@@ -53,4 +57,124 @@ body {
   font-size: 18px;
   color: #D70900;
   margin-top: 30px;
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+}
+
+.content .logo {
+  flex-direction: row;
+  margin: 48px 0;
+}
+
+.content .logo img {
+  width: 52px;
+  height: 60px;
+  margin-right: 16px;
+}
+
+.flashcards {
+  margin: 8px 38px 78px;
+  display: flex;
+  flex-direction: column;
+}
+
+.flashcard {
+  background-color: #FFFFFF;
+  padding: 0 16px;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+
+.flashcard:not(:last-child) {
+  margin-bottom: 26px;
+}
+
+.flashcard .question-title {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.flashcard .question-title ion-icon {
+  font-size: 22px;
+}
+
+.flashcard .question-container {
+  position: relative;
+  padding: 6px 0;
+  width: 100%;
+  min-height: 136px;
+}
+
+.flashcard .question-container h2 {
+  margin: 18px 0 24px;
+  font-size: 18px;
+  color: #333333;
+  word-break: break-word;
+}
+
+.question-container .question {
+  height: 100%;
+}
+
+.question-container .question img {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  width: 30px;
+  height: 20px;
+}
+
+.question-container .answer .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.question-container .answer .buttons button {
+  width: 84px;
+  height: 36px;
+  font-size: 12px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.question-container .answer .buttons button:hover {
+  cursor: pointer;
+}
+
+.question-container button.red {
+  background-color: #FF3030;
+}
+
+.question-container button.yellow {
+  background-color: #FF922E;
+}
+
+.question-container button.green {
+  background-color: #2FBE34;
+}
+
+.bottom-bar {
+  height: 70px;
+  width: 100%;
+  background-color: #FFFFFF;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 }
