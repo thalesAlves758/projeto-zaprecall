@@ -4,6 +4,9 @@ function Flashcard () {
       <div className="question-title">
         <h2>Pergunta 1</h2>
         <ion-icon name="play-outline"></ion-icon>
+        {/* <ion-icon name="close-circle"></ion-icon> */}
+        {/* <ion-icon name="help-circle"></ion-icon> */}
+        {/* <ion-icon name="checkmark-circle"></ion-icon> */}
       </div>
       {/* <div className="question-container">
         <div className="question">
