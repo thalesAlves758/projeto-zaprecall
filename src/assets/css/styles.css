@@ -132,30 +132,48 @@ ion-icon {
   font-size: 16px;
 }
 
-.flashcard .question-container {
+.question-container {
   position: relative;
   padding: 6px 0;
   width: 100%;
   min-height: 136px;
+  display: flex;
 }
 
-.flashcard .question-container h2 {
-  margin: 18px 0 24px;
+.question-container h2 {
+  margin: 12px 0 14px;
   font-size: 18px;
   color: #333333;
   word-break: break-word;
 }
 
-.question-container .question {
-  height: 100%;
-}
-
 .question-container .question img {
   position: absolute;
   right: 0;
-  bottom: 6px;
+  bottom: 0;
   width: 30px;
   height: 20px;
+}
+
+.question-container .face {
+  width: 100%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.question-container .answer {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.question-container.turned .answer {
+  transform: rotateY(0deg);
+}
+
+.question-container.turned .question {
+  transform: rotateY(-180deg);
 }
 
 .question-container .answer .buttons {
