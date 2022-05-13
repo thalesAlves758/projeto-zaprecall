@@ -1,10 +1,14 @@
 import Logo from "./shared/Logo";
 
-export default function InitialDisplay() {
+export default function InitialDisplay({ setDisplay }) {
+  function init() {
+    setDisplay('main');
+  }
+
   return (
     <div className="start-container">
       <Logo big={true} />
-      <button>Iniciar Recall!</button>
+      <button onClick={init}>Iniciar Recall!</button>
     </div>
   );
 }
