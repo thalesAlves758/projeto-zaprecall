@@ -33,8 +33,7 @@ ion-icon {
   align-items: center;
 }
 
-.start-container,
-.container {
+.start-container {
   position: absolute;
   left: 0;
   top: 0;
@@ -190,7 +189,7 @@ ion-icon {
   background-color: #2FBE34;
 }
 
-.bottom-bar {
+.footer {
   width: 100%;
   background-color: #FFFFFF;
   font-size: 18px;
@@ -199,26 +198,27 @@ ion-icon {
   left: 0;
   box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
   text-align: center;
-  padding: 0 66px;
+  padding: 16px 66px;
 }
 
-.bottom-bar .end-message .title {
+.end-message .title {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 16px 0 14px;
   font-weight: 700;
 }
 
-.bottom-bar .end-message .title img {
+.end-message .title img {
   margin-right: 12px;
   width: 22px;
   height: 22px;
 }
 
-.bottom-bar .completed {
-  margin-bottom: 6px;
-  min-height: 70px;
+.end-message p {
+  margin: 14px 0;
+}
+
+.footer .completed {
   text-transform: uppercase;
   display: flex;
   flex-direction: column;

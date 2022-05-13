@@ -1,3 +1,5 @@
+import arrow from '../assets/img/setinha.png';
+
 function Flashcard () {
   return (
     <div className="flashcard">
@@ -11,7 +13,7 @@ function Flashcard () {
       {/* <div className="question-container">
         <div className="question">
           <h2>O que é JSX?</h2>
-          <img src="assets/img/setinha.png" alt="Setinha" />
+          <img src={arrow} alt="Setinha" />
         </div>
         <div className="answer">
           <h2>JSX é uma sintaxe para escrever HTML dentro do JS</h2>
