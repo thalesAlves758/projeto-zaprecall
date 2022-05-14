@@ -1,10 +1,11 @@
-import arrow from '../assets/img/setinha.png';
 import { useState } from 'react';
+import arrow from '../assets/img/setinha.png';
+import QuestionIcon from './QuestionIcon';
 
 const POINT_FIVE = 0.5;
 const ONE = 1;
 
-function QuestionContainer({ question, answer, setAnswered, setUserAnswer }) {
+function QuestionContainer({ question, answer, setAnswered, setUserAnswer, replyQuestion }) {
   const [face, setFace] = useState('question');
 
   function turnToAnswer() {
@@ -14,6 +15,7 @@ function QuestionContainer({ question, answer, setAnswered, setUserAnswer }) {
   function reply(text) {
     setAnswered(true);
     setUserAnswer(text);
+    replyQuestion(text);
   }
 
   return (
@@ -37,7 +39,7 @@ function QuestionContainer({ question, answer, setAnswered, setUserAnswer }) {
   );
 }
 
-function Flashcard ({ question, answer, flashcardCounter }) {
+function Flashcard ({ question, answer, flashcardCounter, replyQuestion }) {
   const [face, setFace] = useState('hidden-question');
   const [answered, setAnswered] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
@@ -46,43 +48,35 @@ function Flashcard ({ question, answer, flashcardCounter }) {
     setFace('showed-question');
   }
 
-  function getIconName(text) {
-    switch(text) {
-      case 'didnt-remember':
-        return 'close-circle';
-
-      case 'almost':
-        return 'help-circle';
-
-      case 'remembered':
-        return 'checkmark-circle';
-
-      default:
-        return 'play-outline';
-    }
-  }
-
   return (
     <div className={`flashcard ${answered ? userAnswer : ''}`} onClick={!answered ? showQuestion : null}>
       {
         face === 'hidden-question' || answered ?
         <div className="question-title">
           <h2>Pergunta {flashcardCounter}</h2>
-          <ion-icon name={getIconName(userAnswer)}></ion-icon>
+          <QuestionIcon userAnswer={userAnswer} />
         </div> :
         <QuestionContainer
           question={question}
           answer={answer}
           setAnswered={setAnswered}
           setUserAnswer={setUserAnswer}
+          replyQuestion={replyQuestion}
         />
       }
     </div>
   );
 }
 
-export default function Flashcards ({ deck }) {
+export default function Flashcards ({ deck, userAnswers, setUserAnswers }) {
   const shuffle = array => [...array].sort(() => Math.random() - POINT_FIVE);
+
+  function replyQuestion(text) {
+    const newUserAnswers = {...userAnswers};
+    newUserAnswers.amountAnswers++;
+    newUserAnswers.answers.push(text);
+    setUserAnswers(newUserAnswers);
+  }
 
   return (
     <div className="flashcards">
@@ -92,6 +86,7 @@ export default function Flashcards ({ deck }) {
           flashcardCounter={index+ONE}
           question={flashcard.question}
           answer={flashcard.answer}
+          replyQuestion={replyQuestion}
         />
       )) }
     </div>

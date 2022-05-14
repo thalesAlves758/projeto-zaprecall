@@ -3,6 +3,7 @@ import Flashcards from './Flashcards';
 import BottomInfo from './BottomInfo';
 import Footer from './Footer';
 import EndMessage from './EndMessage';
+import { useState } from 'react';
 
 export default function MainDisplay() {
   const decks = [
@@ -35,13 +36,23 @@ export default function MainDisplay() {
     ]
   ];
 
+  const initialUserAnswers = {
+    amountAnswers: 0,
+    answers: [],
+  };
+
+  const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
+
   return (
     <div className="content">
       <Logo />
-      <Flashcards deck={decks[0]} />
+      <Flashcards deck={decks[0]} userAnswers={userAnswers} setUserAnswers={setUserAnswers} />
       <Footer>
         {/* <EndMessage rememberedAll={true} /> */}
-        <BottomInfo />
+        <BottomInfo
+          amountQuestions={decks[0].length}
+          userAnswers={userAnswers}
+        />
       </Footer>
     </div>
   );
