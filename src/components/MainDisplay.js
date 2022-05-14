@@ -43,16 +43,20 @@ export default function MainDisplay() {
 
   const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
 
+  const areAllAnswered = (amountAnswers, deck) => amountAnswers === deck.length;
+
+  const rememberedAll = answers => !answers.includes('didnt-remember');
+
   return (
     <div className="content">
       <Logo />
       <Flashcards deck={decks[0]} userAnswers={userAnswers} setUserAnswers={setUserAnswers} />
       <Footer>
-        {/* <EndMessage rememberedAll={true} /> */}
-        <BottomInfo
-          amountQuestions={decks[0].length}
-          userAnswers={userAnswers}
-        />
+        {
+          areAllAnswered(userAnswers.amountAnswers, decks[0]) &&
+          <EndMessage rememberedAll={rememberedAll(userAnswers.answers)} />
+        }
+        <BottomInfo amountQuestions={decks[0].length} userAnswers={userAnswers} />
       </Footer>
     </div>
   );
