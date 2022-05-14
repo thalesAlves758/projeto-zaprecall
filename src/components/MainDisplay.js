@@ -1,9 +1,15 @@
 import Logo from './shared/Logo';
 import Flashcards from './Flashcards';
+import Flashcard from './Flashcard';
 import BottomInfo from './BottomInfo';
 import Footer from './Footer';
 import EndMessage from './EndMessage';
 import { useState } from 'react';
+
+const POINT_FIVE = 0.5;
+const ONE = 1;
+
+const shuffle = array => [...array].sort(() => Math.random() - POINT_FIVE);
 
 export default function MainDisplay() {
   const decks = [
@@ -50,7 +56,20 @@ export default function MainDisplay() {
   return (
     <div className="content">
       <Logo />
-      <Flashcards deck={decks[0]} userAnswers={userAnswers} setUserAnswers={setUserAnswers} />
+
+      <Flashcards>
+        { shuffle(decks[0]).map((flashcard, index) => (
+          <Flashcard
+            key={index}
+            flashcardCounter={index+ONE}
+            question={flashcard.question}
+            answer={flashcard.answer}
+            userAnswers={userAnswers}
+            setUserAnswers={setUserAnswers}
+          />
+        )) }
+      </Flashcards>
+      
       <Footer>
         {
           areAllAnswered(userAnswers.amountAnswers, decks[0]) &&
