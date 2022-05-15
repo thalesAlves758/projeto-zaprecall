@@ -2,7 +2,7 @@ import Logo from './shared/Logo';
 import Flashcards from './Flashcards';
 import Flashcard from './Flashcard';
 import BottomInfo from './BottomInfo';
-import Footer from './Footer';
+import Footer from './shared/Footer';
 import EndMessage from './EndMessage';
 import { useState } from 'react';
 
