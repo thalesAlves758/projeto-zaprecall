@@ -81,6 +81,7 @@ ion-icon {
   height: 44px;
   color: #ADADAD;
   padding: 0 10px;
+  outline: none;
 }
 
 .user-inputs input {
