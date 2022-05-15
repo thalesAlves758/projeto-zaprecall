@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "./shared/Logo";
 
-export default function InitialDisplay({ setDisplay, decks, setZapTarget, setDeck }) {
+export default function InitialDisplay({ setInitialDisplay, decks, setZapTarget, setDeck }) {
   const deckDefaultValue = "default";
 
   const [selected, setSelected] = useState(deckDefaultValue);
@@ -10,7 +10,7 @@ export default function InitialDisplay({ setDisplay, decks, setZapTarget, setDec
   function init() {
     setDeck(decks[selected]);
     setZapTarget(inputValue);
-    setDisplay('main');
+    setInitialDisplay(false);
   }
 
   function handleSelectChange(event) {

@@ -94,15 +94,15 @@ export default function App () {
     },
   ];
 
-  const [display, setDisplay] = useState('initial');
+  const [initialDisplay, setInitialDisplay] = useState(true);
   const [deck, setDeck] = useState(null);
   const [zapTarget, setZapTarget] = useState('');
 
   return (
     <>
       {
-        display === 'initial' ?
-        <InitialDisplay setDisplay={setDisplay} decks={decks} setZapTarget={setZapTarget} setDeck={setDeck} /> :
+        initialDisplay ?
+        <InitialDisplay setInitialDisplay={setInitialDisplay} decks={decks} setZapTarget={setZapTarget} setDeck={setDeck} /> :
         <MainDisplay deck={deck} zapTarget={zapTarget} />
       }
     </>
