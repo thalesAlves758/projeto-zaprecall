@@ -33,21 +33,23 @@ export default function InitialDisplay({ setDisplay, decks, setZapTarget, setDec
     <div className="start-container">
       <Logo big={true} />
 
-      <select value={selected} onChange={handleSelectChange}>
-        <option disabled value={deckDefaultValue}>Escolha seu deck</option>
+      <div className="user-inputs">
+        <select value={selected} onChange={handleSelectChange}>
+          <option disabled value={deckDefaultValue}>Escolha seu deck</option>
 
-        { decks.map((deck, index) => <option key={index} value={index}>{deck.about}</option>) }
-      </select>
+          { decks.map((deck, index) => <option key={index} value={index}>{deck.about}</option>) }
+        </select>
 
-      <input
-        type="text"
-        placeholder="Digite sua meta de zaps..."
-        value={inputValue}
-        onChange={handleInputChange}
-        disabled={selected === deckDefaultValue}
-      />
+        <input
+          type="text"
+          placeholder="Digite sua meta de zaps..."
+          value={inputValue}
+          onChange={handleInputChange}
+          disabled={selected === deckDefaultValue}
+        />
 
-      <button disabled={!canInitRecall()} onClick={init}>Iniciar Recall!</button>
+        <button disabled={!canInitRecall()} onClick={init}>Iniciar Recall!</button>
+      </div>
     </div>
   );
 }
