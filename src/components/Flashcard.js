@@ -36,20 +36,27 @@ function QuestionContainer({ question, answer, setAnswered, setUserAnswer, reply
   );
 }
 
-export default function Flashcard ({ question, answer, flashcardCounter, userAnswers, setUserAnswers }) {
+export default function Flashcard ({ question, answer, flashcardCounter, userAnswers, setUserAnswers, timesPlayed }) {
   const [face, setFace] = useState('hidden-question');
   const [answered, setAnswered] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
+  const [time, setTime] = useState(timesPlayed);
 
   function showQuestion () {
     setFace('showed-question');
   }
 
   function replyQuestion(text) {
-    const newUserAnswers = {...userAnswers};
-    newUserAnswers.amountAnswers++;
-    newUserAnswers.answers.push(text);
+    const newUserAnswers = [...userAnswers];
+    newUserAnswers.push(text);
     setUserAnswers(newUserAnswers);
+  }
+
+  if(timesPlayed !== time) {
+    setFace('hidden-question');
+    setAnswered(false);
+    setUserAnswer('');
+    setTime(timesPlayed);
   }
 
   return (

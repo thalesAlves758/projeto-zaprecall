@@ -13,14 +13,12 @@ const ZERO = 0;
 const shuffle = array => [...array].sort(() => Math.random() - POINT_FIVE);
 
 export default function MainDisplay({ deck: { questions }, zapTarget }) {
-  const initialUserAnswers = {
-    amountAnswers: 0,
-    answers: [],
-  };
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [currentDeck, setCurrentDeck] = useState(questions);
+  const [shuffledDeck, setShuffledDeck] = useState(shuffle(currentDeck));
+  const [timesPlayed, setTimesPlayed] = useState(1);
 
-  const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
-
-  const areAllAnswered = (amountAnswers, deck) => amountAnswers === deck.length;
+  const areAllAnswered = (userAnswers, deck) => userAnswers.length === deck.length;
 
   const amountZap = answers => answers.reduce((accumulator, current) => {
     if(current === 'remembered') {
@@ -31,29 +29,39 @@ export default function MainDisplay({ deck: { questions }, zapTarget }) {
 
   const rememberedAll = answers => !answers.includes('didnt-remember') && amountZap(answers) >= zapTarget;
 
+  function resetRecall() {
+    setUserAnswers([]);
+    setCurrentDeck([...questions]);
+    setShuffledDeck(shuffle(currentDeck));
+    setTimesPlayed(timesPlayed+1);
+  }
+
   return (
     <div className="content">
       <Logo />
 
       <Flashcards>
-        { shuffle(questions).map((flashcard, index) => (
-          <Flashcard
-            key={index}
-            flashcardCounter={index+ONE}
-            question={flashcard.question}
-            answer={flashcard.answer}
-            userAnswers={userAnswers}
-            setUserAnswers={setUserAnswers}
-          />
-        )) }
+        {
+          shuffledDeck.map((flashcard, index) => (
+            <Flashcard
+              key={index}
+              flashcardCounter={index+ONE}
+              question={flashcard.question}
+              answer={flashcard.answer}
+              userAnswers={userAnswers}
+              setUserAnswers={setUserAnswers}
+              timesPlayed={timesPlayed}
+            />
+          ))
+        }
       </Flashcards>
       
       <Footer>
         {
-          areAllAnswered(userAnswers.amountAnswers, questions) &&
-          <EndMessage rememberedAll={rememberedAll(userAnswers.answers)} />
+          areAllAnswered(userAnswers, currentDeck) &&
+          <EndMessage rememberedAll={rememberedAll(userAnswers)} />
         }
-        <BottomInfo amountQuestions={questions.length} userAnswers={userAnswers} />
+        <BottomInfo currentDeck={currentDeck} resetRecall={resetRecall} userAnswers={userAnswers} />
       </Footer>
     </div>
   );
