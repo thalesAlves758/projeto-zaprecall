@@ -8,10 +8,11 @@ import { useState } from 'react';
 
 const POINT_FIVE = 0.5;
 const ONE = 1;
+const ZERO = 0;
 
 const shuffle = array => [...array].sort(() => Math.random() - POINT_FIVE);
 
-export default function MainDisplay({ deck: { questions } }) {
+export default function MainDisplay({ deck: { questions }, zapTarget }) {
   const initialUserAnswers = {
     amountAnswers: 0,
     answers: [],
@@ -21,7 +22,14 @@ export default function MainDisplay({ deck: { questions } }) {
 
   const areAllAnswered = (amountAnswers, deck) => amountAnswers === deck.length;
 
-  const rememberedAll = answers => !answers.includes('didnt-remember');
+  const amountZap = answers => answers.reduce((accumulator, current) => {
+    if(current === 'remembered') {
+      return accumulator+1;
+    }
+    return accumulator;
+  }, ZERO);
+
+  const rememberedAll = answers => !answers.includes('didnt-remember') && amountZap(answers) >= zapTarget;
 
   return (
     <div className="content">

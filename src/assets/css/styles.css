@@ -63,7 +63,8 @@ ion-icon {
 }
 
 .start-container select,
-.start-container button {
+.start-container button,
+.start-container input {
   background-color: #FFFFFF;
   width: 246px;
   border: none;
@@ -75,7 +76,24 @@ ion-icon {
   height: 44px;
   color: #ADADAD;
   padding: 0 10px;
-  margin: 26px 0 18px;
+  margin-top: 26px;
+}
+
+.start-container input {
+  height: 44px;
+  font-size: 14px;
+  padding: 0 10px;
+  outline: none;
+  margin: 18px 0;
+  color: #FB6B6B;
+}
+
+.start-container input:disabled {
+  background-color: #E8E8E8;
+}
+
+.start-container input::placeholder {
+  color: #ADADAD;
 }
 
 .start-container button {
