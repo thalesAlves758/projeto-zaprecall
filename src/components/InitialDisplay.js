@@ -35,7 +35,7 @@ export default function InitialDisplay({ setInitialDisplay, decks, setZapTarget,
 
       <div className="user-inputs">
         <select value={selected} onChange={handleSelectChange}>
-          <option disabled value={deckDefaultValue}>Escolha seu deck</option>
+          <option hidden value={deckDefaultValue}>Escolha seu deck</option>
 
           { decks.map((deck, index) => <option key={index} value={index}>{deck.about}</option>) }
         </select>
