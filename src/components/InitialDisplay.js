@@ -15,6 +15,7 @@ export default function InitialDisplay({ setInitialDisplay, decks, setZapTarget,
 
   function handleSelectChange(event) {
     setSelected(event.target.value);
+    setInputValue('');
   }
 
   const isValidValue = value => value === '' || (parseInt(value) >= 1 && parseInt(value) <= decks[selected].questions.length);
