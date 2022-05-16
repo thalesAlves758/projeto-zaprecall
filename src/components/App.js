@@ -103,7 +103,7 @@ export default function App () {
       {
         initialDisplay ?
         <InitialDisplay setInitialDisplay={setInitialDisplay} decks={decks} setZapTarget={setZapTarget} setDeck={setDeck} /> :
-        <MainDisplay deck={deck} zapTarget={zapTarget} />
+        <MainDisplay setInitialDisplay={setInitialDisplay} deck={deck} zapTarget={zapTarget} />
       }
     </>
   );

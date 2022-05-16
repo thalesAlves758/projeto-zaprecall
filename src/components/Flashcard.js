@@ -36,11 +36,10 @@ function QuestionContainer({ question, answer, setAnswered, setUserAnswer, reply
   );
 }
 
-export default function Flashcard ({ question, answer, flashcardCounter, userAnswers, setUserAnswers, timesPlayed }) {
+export default function Flashcard ({ question, answer, flashcardCounter, userAnswers, setUserAnswers }) {
   const [face, setFace] = useState('hidden-question');
   const [answered, setAnswered] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
-  const [version, setVersion] = useState(timesPlayed);
 
   function showQuestion () {
     setFace('showed-question');
@@ -48,13 +47,6 @@ export default function Flashcard ({ question, answer, flashcardCounter, userAns
 
   function replyQuestion(text) {
     setUserAnswers([...userAnswers, text]);
-  }
-
-  if(timesPlayed !== version) {
-    setFace('hidden-question');
-    setAnswered(false);
-    setUserAnswer('');
-    setVersion(timesPlayed);
   }
 
   return (

@@ -12,11 +12,8 @@ const ZERO = 0;
 
 const shuffle = array => [...array].sort(() => Math.random() - POINT_FIVE);
 
-export default function MainDisplay({ deck: { questions }, zapTarget }) {
+export default function MainDisplay({ setInitialDisplay,  deck: { questions }, zapTarget }) {
   const [userAnswers, setUserAnswers] = useState([]);
-  const [currentDeck, setCurrentDeck] = useState(questions);
-  const [shuffledDeck, setShuffledDeck] = useState(shuffle(currentDeck));
-  const [timesPlayed, setTimesPlayed] = useState(1);
 
   const areAllAnswered = (userAnswers, deck) => userAnswers.length === deck.length;
 
@@ -30,10 +27,7 @@ export default function MainDisplay({ deck: { questions }, zapTarget }) {
   const rememberedAll = answers => !answers.includes('didnt-remember') && amountZap(answers) >= zapTarget;
 
   function resetRecall() {
-    setUserAnswers([]);
-    setCurrentDeck([...questions]);
-    setShuffledDeck(shuffle(currentDeck));
-    setTimesPlayed(timesPlayed+1);
+    setInitialDisplay(true);
   }
 
   return (
@@ -42,7 +36,7 @@ export default function MainDisplay({ deck: { questions }, zapTarget }) {
 
       <Flashcards>
         {
-          shuffledDeck.map((flashcard, index) => (
+          shuffle(questions).map((flashcard, index) => (
             <Flashcard
               key={index}
               flashcardCounter={index+ONE}
@@ -50,7 +44,6 @@ export default function MainDisplay({ deck: { questions }, zapTarget }) {
               answer={flashcard.answer}
               userAnswers={userAnswers}
               setUserAnswers={setUserAnswers}
-              timesPlayed={timesPlayed}
             />
           ))
         }
@@ -58,10 +51,10 @@ export default function MainDisplay({ deck: { questions }, zapTarget }) {
       
       <Footer>
         {
-          areAllAnswered(userAnswers, currentDeck) &&
+          areAllAnswered(userAnswers, questions) &&
           <EndMessage rememberedAll={rememberedAll(userAnswers)} />
         }
-        <BottomInfo currentDeck={currentDeck} resetRecall={resetRecall} userAnswers={userAnswers} />
+        <BottomInfo currentDeck={questions} resetRecall={resetRecall} userAnswers={userAnswers} />
       </Footer>
     </div>
   );
