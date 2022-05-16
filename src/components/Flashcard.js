@@ -40,7 +40,7 @@ export default function Flashcard ({ question, answer, flashcardCounter, userAns
   const [face, setFace] = useState('hidden-question');
   const [answered, setAnswered] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
-  const [time, setTime] = useState(timesPlayed);
+  const [version, setVersion] = useState(timesPlayed);
 
   function showQuestion () {
     setFace('showed-question');
@@ -52,11 +52,11 @@ export default function Flashcard ({ question, answer, flashcardCounter, userAns
     setUserAnswers(newUserAnswers);
   }
 
-  if(timesPlayed !== time) {
+  if(timesPlayed !== version) {
     setFace('hidden-question');
     setAnswered(false);
     setUserAnswer('');
-    setTime(timesPlayed);
+    setVersion(timesPlayed);
   }
 
   return (
