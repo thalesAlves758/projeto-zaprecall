@@ -47,9 +47,7 @@ export default function Flashcard ({ question, answer, flashcardCounter, userAns
   }
 
   function replyQuestion(text) {
-    const newUserAnswers = [...userAnswers];
-    newUserAnswers.push(text);
-    setUserAnswers(newUserAnswers);
+    setUserAnswers([...userAnswers, text]);
   }
 
   if(timesPlayed !== version) {
