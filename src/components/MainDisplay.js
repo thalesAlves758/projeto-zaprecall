@@ -14,6 +14,7 @@ const shuffle = array => [...array].sort(() => Math.random() - POINT_FIVE);
 
 export default function MainDisplay({ setInitialDisplay,  deck: { questions }, zapTarget }) {
   const [userAnswers, setUserAnswers] = useState([]);
+  const [shuffledDeck, setShuffledDeck] = useState(shuffle(questions));
 
   const areAllAnswered = (userAnswers, deck) => userAnswers.length === deck.length;
 
@@ -36,7 +37,7 @@ export default function MainDisplay({ setInitialDisplay,  deck: { questions }, z
 
       <Flashcards>
         {
-          shuffle(questions).map((flashcard, index) => (
+          shuffledDeck.map((flashcard, index) => (
             <Flashcard
               key={index}
               flashcardCounter={index+ONE}
