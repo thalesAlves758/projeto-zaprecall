@@ -40,13 +40,16 @@ export default function InitialDisplay({ setInitialDisplay, decks, setZapTarget,
           { decks.map((deck, index) => <option key={index} value={index}>{deck.about}</option>) }
         </select>
 
-        <input
-          type="text"
-          placeholder="Digite sua meta de zaps..."
-          value={inputValue}
-          onChange={handleInputChange}
-          disabled={selected === deckDefaultValue}
-        />
+        <div className="zap-target-input">
+          <input
+            type="text"
+            placeholder="Digite sua meta de zaps..."
+            value={inputValue}
+            onChange={handleInputChange}
+            disabled={selected === deckDefaultValue}
+          />
+          { selected !== deckDefaultValue && <small>Deve ser um número de 1 a {decks[selected].questions.length}</small> }
+        </div>
 
         <button disabled={!canInitRecall()} onClick={init}>Iniciar Recall!</button>
       </div>
